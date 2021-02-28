@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    #prefix：指定模板所在的目录
+    prefix: classpath:/templates/
+    #check-tempate-location: 检查模板路径是否存在
+    check-template-location: true
+    #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+    cache: false
+    #suffix 配置模板后缀名
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+hive:
+  url: jdbc:hive2://192.168.56.101:10000/default
+  driver-class-name: org.apache.hive.jdbc.HiveDriver
+  type: com.alibaba.druid.pool.DruidDataSource
+  user: root
+  password: 123456
+  # 下面为连接池的补充设置，应用到上面所有数据源中
+  # 初始化大小，最小，最大
+  initialSize: 1
+  minIdle: 3
+  maxActive: 20
+  # 配置获取连接等待超时的时间
+  maxWait: 60000
+  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+  timeBetweenEvictionRunsMillis: 60000
+  # 配置一个连接在池中最小生存的时间，单位是毫秒
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  # 打开PSCache，并且指定每个连接上PSCache的大小
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+es:
+  host: 192.168.56.101
+  port: 9200
